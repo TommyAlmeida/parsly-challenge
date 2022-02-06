@@ -43,4 +43,4 @@ Or development mode:
   - `docker-compose -f docker-compose.yml up -d`
 - Navigate to http://localhost:80
 
-# Enjoy
+# Enjoy :)
