@@ -5,10 +5,18 @@ services:
     image: prom/prometheus
     ports:
       - 9090:9090
+    volumes:
+      - ./prom/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
   grafana:
     image: grafana/grafana
     ports:
       - 80:3000
+    volumes:
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/config.ini:/etc/grafana/config.ini
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
 
 volumes:
   prometheus_data: {}

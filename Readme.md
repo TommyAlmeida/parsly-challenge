@@ -32,7 +32,6 @@ Or development mode:
 
 - Go to the parsly-monitoring-ui folder
 - Run the following commands by its order:
-  - `docker-compose -f docker-compose.dev.yml up -d`
   - `npm run install --force ; npm run develop`
 - Navigate to http://localhost:8000
 
