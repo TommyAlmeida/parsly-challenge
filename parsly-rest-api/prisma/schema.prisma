@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EventSeverity {
+  Critical
+  Error
+  Warning
+}
+
+enum EventObjectType {
+  ApiGateway
+  SupplierManagement
+  UserManagement
+  Esign
+  StorageManagement
+  StorageClient
+  Notifier
+}
+
+model User {
+  id       Int     @default(autoincrement()) @id
+  email    String  @unique
+  password String
+}
+
+model Event {
+  id        Int     @default(autoincrement()) @id
+  name      String
+  detail    String 
+  timestamp DateTime @default(now())
+  severity  EventSeverity
+  eventObject     EventObject @relation(fields: [eventObjectId], references: [id])
+  eventObjectId   Int 
+}
+
+model EventObject {
+  id        Int     @default(autoincrement()) @id
+  name      String
+  type      EventObjectType
+  event    Event?
+}

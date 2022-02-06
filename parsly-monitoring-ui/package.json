@@ -1,0 +1,65 @@
+{
+  "name": "parsly-monitoring-ui",
+  "private": true,
+  "description": "parsly-monitoring-ui",
+  "version": "1.0.0",
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.1",
+    "@chakra-ui/react": "^1.8.1",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@hookform/resolvers": "^2.8.8",
+    "framer-motion": "^5.6.0",
+    "gatsby": "^3.10.2",
+    "gatsby-background-image": "^1.5.3",
+    "gatsby-plugin-image": "^1.10.1",
+    "gatsby-plugin-manifest": "^3.10.0",
+    "gatsby-plugin-offline": "^4.10.0",
+    "gatsby-plugin-react-helmet": "^4.10.0",
+    "gatsby-plugin-sharp": "^3.10.2",
+    "gatsby-plugin-styled-components": "^4.10.0",
+    "gatsby-plugin-typescript": "^3.10.0",
+    "gatsby-source-filesystem": "^3.10.0",
+    "gatsby-transformer-sharp": "^3.10.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.26.0",
+    "react-icons": "^4.2.0",
+    "react-is": "^17.0.2",
+    "react-slick": "^0.28.1",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/node": "^16.4.8",
+    "@types/react": "^17.0.15",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-helmet": "^6.1.2",
+    "@types/react-slick": "^0.23.5",
+    "gatsby-plugin-root-import": "^2.0.6",
+    "husky": ">=6",
+    "lint-staged": ">=10",
+    "prettier": "2.3.2"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-template",
+    "chakra-ui",
+    "typescript"
+  ],
+  "license": "0BSD",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,md}": "prettier --write"
+  }
+}
