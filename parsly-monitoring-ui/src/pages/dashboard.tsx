@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Flex,
   Button,
@@ -8,14 +8,43 @@ import {
   StatHelpText,
   SimpleGrid,
   Tag,
+  Select,
 } from "@chakra-ui/react";
 
-import { generateRandomEvent } from "../api/services/Events/EventService";
+import {
+  generateRandomEvent,
+  listEvents,
+} from "../api/services/Events/EventService";
+import { IEventData } from "../api/services/Events/Types";
 import { EventsTable } from "components/Events/EventsTable";
 
 import asAuthenticatedRoute from "components/Auth/AutheticatedRoute/AuthenticatedRoute";
-import { RepeatIcon } from "@chakra-ui/icons";
 const DashboardPage = () => {
+  const [loadingData, setLoadingData] = useState(true);
+  const [refreshInterval, setRefreshInterval] = useState(5000);
+  const [data, setData] = useState<IEventData[]>();
+
+  async function getData() {
+    listEvents().then(response => {
+      setData(response.data);
+      console.log(response.data);
+      setLoadingData(false);
+    });
+  }
+
+  useEffect(() => {
+    if (refreshInterval && refreshInterval > 0) {
+      const interval = setInterval(getData, refreshInterval);
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [refreshInterval]);
+
+  const removeEvent = (rowId: number) => {
+    if (data) setData(data.filter(row => row.id !== rowId));
+  };
+
   return (
     <>
       <Flex flexDirection="column" m={10}>
@@ -48,21 +77,12 @@ const DashboardPage = () => {
               </StatHelpText>
             </Stat>
           </Flex>
-          <Flex flexDirection="row" align="center" justify="center" w="100%">
-            <Stat>
-              <StatLabel>Global Uptime</StatLabel>
-              <StatNumber>99.28%</StatNumber>
-              <StatHelpText
-                alignSelf="flex-end"
-                justifySelf="flex-end"
-                color="green.400"
-                fontWeight="bold"
-                fontSize="md"
-              >
-                +15%
-              </StatHelpText>
-            </Stat>
-          </Flex>
+          <Flex
+            flexDirection="row"
+            align="center"
+            justify="center"
+            w="100%"
+          ></Flex>
           <Flex flexDirection="row" align="center" justify="center" w="100%">
             <Stat>
               <StatLabel>Global Uptime</StatLabel>
@@ -80,21 +100,15 @@ const DashboardPage = () => {
           </Flex>
         </SimpleGrid>
       </Flex>
-      <Flex m={10}>
-        <Flex justifyContent="space-between" m={10} alignItems="center">
-          <Flex>
-            <Button onClick={async () => await generateRandomEvent()}>
-              Generate Random Events
-            </Button>
-          </Flex>
-
-          <Flex>
-            <Button rightIcon={<RepeatIcon />} ml={4}>
-              Refresh
-            </Button>
-          </Flex>
+      <Flex justifyContent="space-between" m={4} alignItems="center">
+        <Flex>
+          <Button onClick={async () => await generateRandomEvent()}>
+            Generate Random Events
+          </Button>
         </Flex>
-        <EventsTable />
+      </Flex>
+      <Flex m={10}>
+        <EventsTable isLoading={loadingData} data={data} />
       </Flex>
     </>
   );

@@ -18,7 +18,6 @@ import { CheckIcon } from "@chakra-ui/icons";
 import { FaEllipsisV } from "react-icons/fa";
 
 interface TableEventRowProps {
-  isLoading: boolean;
   name: string;
   detail: string;
   timestamp: Date;

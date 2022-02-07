@@ -4,14 +4,20 @@ Somewhat missing better UI features like pagination, table header filtering and 
 
 FYI: There's a folder called "parsly-extra-yet-cool" which is not part of the challenge but since I'm doing a monitoring Rest/UI challenge I might as well include some cool Prometheus and Grafana metrics.
 
-#### Tech Used:
+#### Tech Stack Used:
 
-- NestJS
-- Gatsby
-- Typescript
-- Postgres
-- React
-- Docker
+- NestJS - Backend web framework
+- Typescript - Superset of JS for typings
+- Postgres - Database
+- Prisma - Database ORM
+- Gatsby - Frontend framework
+- React - UI Library
+- Docker - Deployment
+
+#### Extra Tech Stack
+
+- Prometheus - Time series database
+- Grafana - open-source dashboard
 
 ## Installation
 

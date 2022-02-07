@@ -20,6 +20,7 @@ export type IEventObject = {
 };
 
 export interface IEventData {
+  id: number;
   name: string;
   detail: string;
   timestamp: Date;
