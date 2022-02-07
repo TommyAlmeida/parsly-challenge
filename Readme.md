@@ -1,10 +1,13 @@
 # Parsly Challenge
 
+Somewhat missing better UI features like pagination, table header filtering and better dynamic charts but here it goes!
+
 FYI: There's a folder called "parsly-extra-yet-cool" which is not part of the challenge but since I'm doing a monitoring Rest/UI challenge I might as well include some cool Prometheus and Grafana metrics.
 
 #### Tech Used:
 
 - NestJS
+- Gatsby
 - Typescript
 - Postgres
 - React
@@ -13,11 +16,6 @@ FYI: There's a folder called "parsly-extra-yet-cool" which is not part of the ch
 ## Installation
 
 The challenge requires [Node.js](https://nodejs.org/) v14+ to run.
-
-Run docker-compose.yml included on the root of this folder:
-`docker-compose -f docker-compose.prod.yml up -d`
-
-Or development mode:
 
 ### 1st: Run the rest-api
 
@@ -41,5 +39,9 @@ Or development mode:
 - Run the following commands by its order:
   - `docker-compose -f docker-compose.yml up -d`
 - Navigate to http://localhost:80
+- Default login
+  - User: admin
+  - Pw: admin
+- Go to dashboards and import the postgres-dashboard.json located on "parsly-extra-yet-cool\grafana\provisioning\dashboards\postgresql-database.json"
 
 # Enjoy :)
