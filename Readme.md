@@ -47,10 +47,10 @@ The challenge requires [Node.js](https://nodejs.org/) v14+ to run.
 - Go to the parsly-extra-yet-cool folder
 - Run the following commands by its order:
   - `docker-compose -f docker-compose.yml up -d`
-- Navigate to http://localhost:80
+- Navigate to http://localhost:80 for grafana or http://localhost:9090 for prometheus
 - Default login
   - User: admin
   - Pw: admin
-- Go to dashboards and import the node-exporter-full.json located on "parsly-extra-yet-cool\grafana\provisioning\dashboards\node-exporter-full.json"
+- Go to dashboards / manage and select one of the available dashboards
 
 # Enjoy :)
