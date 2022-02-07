@@ -42,8 +42,6 @@ export default function Register() {
   const handleRegister = async (values: AuthInputData) => {
     try {
       const { email, password } = values;
-
-      console.log(email, password);
       const response = await register({ email, password });
 
       localStorage.setItem("accessToken", response["accessToken"]);
@@ -76,11 +74,16 @@ export default function Register() {
       >
         <Stack spacing={4}>
           <form onSubmit={form.handleSubmit(handleRegister)}>
-            <FormControl>
+            <FormControl isInvalid={form.formState.errors.email}>
               <FormLabel>Email address</FormLabel>
               <Input type="email" {...form.register("email")} required />
             </FormControl>
-            <FormControl id="password" pt={4} isRequired>
+            <FormControl
+              id="password"
+              pt={4}
+              isInvalid={form.formState.errors.password}
+              isRequired
+            >
               <FormLabel>Password</FormLabel>
               <InputGroup>
                 <Input

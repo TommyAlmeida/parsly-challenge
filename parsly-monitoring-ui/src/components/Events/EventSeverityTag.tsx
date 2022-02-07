@@ -17,7 +17,7 @@ export const EventSeverityTag = ({ severity }) => {
   }
 
   return (
-    <Tag bgColor={determineSeverityColor()} textColor="white">
+    <Tag bgColor={determineSeverityColor()} fontWeight="bold" textColor="white">
       {severity}
     </Tag>
   );

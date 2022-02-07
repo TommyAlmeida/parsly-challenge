@@ -41,6 +41,10 @@ const Login = () => {
       const { email, password } = values;
       const response = await login({ email, password });
 
+      if (!response["accessToken"]) {
+        throw new Error("AccessToken could not be set.");
+      }
+
       localStorage.setItem("accessToken", response["accessToken"]);
       navigate("/dashboard");
     } catch (err) {
@@ -75,11 +79,15 @@ const Login = () => {
             <Stack spacing={4}>
               <form onSubmit={form.handleSubmit(handleLogin)}>
                 <FormErrorMessage>{form.formState.errors}</FormErrorMessage>
-                <FormControl id="email">
+                <FormControl id="email" isInvalid={form.formState.errors.email}>
                   <FormLabel>Email address</FormLabel>
                   <Input type="email" {...form.register("email")} />
                 </FormControl>
-                <FormControl id="password" pt={4}>
+                <FormControl
+                  id="password"
+                  pt={4}
+                  isInvalid={form.formState.errors.password}
+                >
                   <FormLabel>Password</FormLabel>
                   <Input type="password" {...form.register("password")} />
                 </FormControl>

@@ -15,9 +15,9 @@ import { IEventObject } from "../../api/services/Events/Types";
 import React, { useEffect, useState } from "react";
 import { findObjectById } from "../../api/services/Events/EventService";
 
-function EventDetailsModal({ eventObjectId, details }) {
+function EventDetailsModal({ eventObjectId, details, isOpen, onClose }) {
   const [loadingData, setLoadingData] = useState(true);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const [data, setData] = useState<IEventObject>();
 
   useEffect(() => {
@@ -35,17 +35,6 @@ function EventDetailsModal({ eventObjectId, details }) {
 
   return (
     <>
-      <Button
-        bg={"gray.400"}
-        color={"white"}
-        _hover={{
-          bg: "gray.600",
-        }}
-        onClick={onOpen}
-      >
-        Show Details
-      </Button>
-
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -53,7 +42,7 @@ function EventDetailsModal({ eventObjectId, details }) {
           <ModalCloseButton />
           <ModalBody>
             <Text fontWeight="bold" mb="1rem">
-              Occured on <Tag>{data?.type}</Tag>
+              Occured on <Tag fontWeight="bold">{data?.type}</Tag>
             </Text>
 
             <Text fontWeight="normal" mb="1rem">
