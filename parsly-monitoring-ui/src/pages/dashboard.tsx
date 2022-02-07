@@ -8,7 +8,6 @@ import {
   StatHelpText,
   SimpleGrid,
   Tag,
-  Select,
 } from "@chakra-ui/react";
 
 import {
@@ -19,7 +18,6 @@ import { IEventData } from "../api/services/Events/Types";
 import { EventsTable } from "components/Events/EventsTable";
 
 import asAuthenticatedRoute from "components/Auth/AutheticatedRoute/AuthenticatedRoute";
-import { LineChart } from "components/Charts/LineChart";
 const DashboardPage = () => {
   const [loadingData, setLoadingData] = useState(true);
   const [refreshInterval, setRefreshInterval] = useState(5000);
@@ -28,7 +26,6 @@ const DashboardPage = () => {
   async function getData() {
     listEvents().then(response => {
       setData(response.data);
-      console.log(response.data);
       setLoadingData(false);
     });
   }

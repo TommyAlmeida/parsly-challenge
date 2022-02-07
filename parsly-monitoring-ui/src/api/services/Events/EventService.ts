@@ -10,11 +10,7 @@ export const listEvents = async () => {
 };
 
 export const generateRandomEvent = async () => {
-  return await http.post("/events/generate", { headers: headers });
-};
-
-export const deleteEventById = async (id: number) => {
-  return await http.delete(`/events/${id}`, {
+  return await http.get<IEventData>("/events/generate", {
     headers: headers,
   });
 };

@@ -20,7 +20,7 @@ export class EventController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Post('/generate')
+  @Get('/generate')
   async generateLoremEvent() {
     return this.eventService.generateLoremEvent();
   }
