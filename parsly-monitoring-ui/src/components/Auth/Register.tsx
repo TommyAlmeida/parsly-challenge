@@ -42,10 +42,9 @@ export default function Register() {
   const handleRegister = async (values: AuthInputData) => {
     try {
       const { email, password } = values;
-      const response = await register({ email, password });
+      await register({ email, password });
 
-      localStorage.setItem("accessToken", response["accessToken"]);
-      navigate("/dashboard");
+      navigate("/login");
     } catch (err) {
       console.log("handleRegister error: ", err);
     }
