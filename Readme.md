@@ -28,7 +28,10 @@ The challenge requires [Node.js](https://nodejs.org/) v14+ to run.
 - Go to the parsly-rest-api folder
 - Run the following commands by its order:
   - `docker-compose -f docker-compose.dev.yml up -d`
-  - `npm i ; npx prisma generate ; npx prisma migrate dev ; npm run start:dev`
+  - `npm i ; npx prisma generate ; npx prisma migrate dev ; npm run seed ; npm run start:dev`
+- Demo user in case you dont wanna create one:
+  - Email: demo@foobar.com
+  - Pw: secret42
 - Api docs on http://localhost:3000/api/docs
 - Rest api on http://localhost:3000/
 
@@ -48,6 +51,6 @@ The challenge requires [Node.js](https://nodejs.org/) v14+ to run.
 - Default login
   - User: admin
   - Pw: admin
-- Go to dashboards and import the postgres-dashboard.json located on "parsly-extra-yet-cool\grafana\provisioning\dashboards\postgresql-database.json"
+- Go to dashboards and import the node-exporter-full.json located on "parsly-extra-yet-cool\grafana\provisioning\dashboards\node-exporter-full.json"
 
 # Enjoy :)
