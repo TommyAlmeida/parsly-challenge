@@ -29,10 +29,7 @@ export default function Register() {
   const resolver = yupResolver(
     object().shape({
       email: string().email().defined().required(),
-      password: string()
-        .defined()
-        .required()
-        .min(8, "Password must be longer than or equal to 8 characters"),
+      password: string().defined().required(),
     }) as SchemaOf<AuthInputData>
   );
 
