@@ -8,7 +8,7 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Checkbox,
+  useToast,
   Button,
   Text,
   Link,
@@ -22,6 +22,8 @@ import { login } from "../../api/services/Auth/AuthService";
 import { navigate } from "gatsby";
 
 const Login = () => {
+  const toast = useToast();
+
   const resolver = yupResolver(
     object().shape({
       email: string().email().defined().required(),
@@ -36,17 +38,26 @@ const Login = () => {
     mode: "onSubmit",
   });
 
-  const handleLogin = async (values: AuthInputData) => {
+  const handleLogin = async ({ email, password }: AuthInputData) => {
     try {
-      const { email, password } = values;
-      const response = await login({ email, password });
+      login({ email, password })
+        .then(response => {
+          const responseData = response.data;
 
-      if (!response["accessToken"]) {
-        throw new Error("AccessToken could not be set.");
-      }
-
-      localStorage.setItem("accessToken", response["accessToken"]);
-      navigate("/dashboard");
+          localStorage.setItem("accessToken", responseData["accessToken"]);
+          navigate("/dashboard");
+        })
+        .catch(e => {
+          const errors = e.response.data;
+          toast({
+            title: errors.error,
+            description: errors.message,
+            position: "top",
+            status: "error",
+            variant: "solid",
+            isClosable: true,
+          });
+        });
     } catch (err) {
       console.log("handleLogin error: ", err);
     }
@@ -77,8 +88,15 @@ const Login = () => {
             p={8}
           >
             <Stack spacing={4}>
+              <div>
+                {form.formState.errors && form.formState.errors.email?.message}
+              </div>
               <form onSubmit={form.handleSubmit(handleLogin)}>
-                <FormErrorMessage>{form.formState.errors}</FormErrorMessage>
+                <FormErrorMessage>
+                  {form.formState.errors && (
+                    <Text role="alert">Error: {form.formState.errors}</Text>
+                  )}
+                </FormErrorMessage>
                 <FormControl id="email" isInvalid={form.formState.errors.email}>
                   <FormLabel>Email address</FormLabel>
                   <Input type="email" {...form.register("email")} />

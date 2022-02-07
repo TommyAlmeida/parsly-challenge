@@ -12,6 +12,8 @@ import {
   Text,
   useColorModeValue,
   Link,
+  useToast,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { SchemaOf, object, string } from "yup";
@@ -22,6 +24,8 @@ import { register } from "../../api/services/Auth/AuthService";
 import { navigate } from "gatsby";
 
 export default function Register() {
+  const toast = useToast();
+
   const resolver = yupResolver(
     object().shape({
       email: string().email().defined().required(),
@@ -42,9 +46,30 @@ export default function Register() {
   const handleRegister = async (values: AuthInputData) => {
     try {
       const { email, password } = values;
-      await register({ email, password });
-
-      navigate("/login");
+      await register({ email, password })
+        .then(() => {
+          toast({
+            title: "Success",
+            description: "You're account has been created.",
+            position: "top",
+            status: "success",
+            variant: "solid",
+            isClosable: true,
+          });
+          navigate("/login");
+        })
+        .catch(e => {
+          const errors = e.response.data;
+          console.log(errors);
+          toast({
+            title: errors.error,
+            description: errors.message,
+            position: "top",
+            status: "error",
+            variant: "solid",
+            isClosable: true,
+          });
+        });
     } catch (err) {
       console.log("handleRegister error: ", err);
     }
@@ -73,6 +98,11 @@ export default function Register() {
       >
         <Stack spacing={4}>
           <form onSubmit={form.handleSubmit(handleRegister)}>
+            <FormErrorMessage>
+              {form.formState.errors && (
+                <Text role="alert">Error: {form.formState.errors}</Text>
+              )}
+            </FormErrorMessage>
             <FormControl isInvalid={form.formState.errors.email}>
               <FormLabel>Email address</FormLabel>
               <Input type="email" {...form.register("email")} required />
