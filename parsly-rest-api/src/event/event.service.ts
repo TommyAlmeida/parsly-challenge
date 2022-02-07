@@ -23,8 +23,6 @@ export class EventService {
   async generateLoremEvent() {
     const randomSeverity = randomProperty(EventSeverity);
     const randomObjectType = randomProperty(EventObjectType);
-
-    console.log(randomSeverity, randomObjectType);
     const randomEventName = faker.default.lorem.slug(1);
 
     return await this.prisma.event.create({
