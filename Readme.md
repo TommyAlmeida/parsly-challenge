@@ -28,7 +28,7 @@ The challenge requires [Node.js](https://nodejs.org/) v14+ to run.
 - Go to the parsly-rest-api folder
 - Run the following commands by its order:
   - `docker-compose -f docker-compose.dev.yml up -d`
-  - `npm run install --force ; npx prisma generate ; npx prisma migrate dev ; npm run start:dev`
+  - `npm i ; npx prisma generate ; npx prisma migrate dev ; npm run start:dev`
 - Api docs on http://localhost:3000/api/docs
 - Rest api on http://localhost:3000/
 
@@ -36,7 +36,7 @@ The challenge requires [Node.js](https://nodejs.org/) v14+ to run.
 
 - Go to the parsly-monitoring-ui folder
 - Run the following commands by its order:
-  - `npm run install --force ; npm run develop`
+  - `npm i ; npm run develop`
 - Navigate to http://localhost:8000
 
 ### 3rd: In case you want to see the beauty of prometheus and grafana:
