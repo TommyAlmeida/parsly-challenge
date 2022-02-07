@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Table, Thead, Tbody, Tr, Th, Flex, Spinner } from "@chakra-ui/react";
 
 import TableEventRow from "components/Events/TableEventsRow";
 
 export const EventsTable = ({ isLoading, data }) => {
+  const removeEvent = (rowId: number) => {
+    console.log("clicked", rowId);
+    if (data) data.filter(row => row.id !== rowId);
+  };
+
   return (
     <>
       {isLoading ? (

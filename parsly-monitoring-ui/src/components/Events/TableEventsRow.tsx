@@ -11,11 +11,10 @@ import {
   useDisclosure,
   Icon,
 } from "@chakra-ui/react";
+import { FaEllipsisV } from "react-icons/fa";
 import { EventSeverity } from "../../api/services/Events/Types";
 import { EventSeverityTag } from "components/Events/EventSeverityTag";
 import EventDetailsModal from "components/Events/EventDetailsModal";
-import { CheckIcon } from "@chakra-ui/icons";
-import { FaEllipsisV } from "react-icons/fa";
 
 interface TableEventRowProps {
   name: string;
@@ -75,9 +74,6 @@ function TableEventRow(props: TableEventRowProps) {
             onClick={onOpen}
           >
             Show Details
-          </Button>
-          <Button rightIcon={<CheckIcon />} ml={4} colorScheme="green">
-            Correct
           </Button>
         </Td>
       </Tr>

@@ -19,6 +19,7 @@ import { IEventData } from "../api/services/Events/Types";
 import { EventsTable } from "components/Events/EventsTable";
 
 import asAuthenticatedRoute from "components/Auth/AutheticatedRoute/AuthenticatedRoute";
+import { LineChart } from "components/Charts/LineChart";
 const DashboardPage = () => {
   const [loadingData, setLoadingData] = useState(true);
   const [refreshInterval, setRefreshInterval] = useState(5000);
@@ -40,10 +41,6 @@ const DashboardPage = () => {
       };
     }
   }, [refreshInterval]);
-
-  const removeEvent = (rowId: number) => {
-    if (data) setData(data.filter(row => row.id !== rowId));
-  };
 
   return (
     <>
@@ -77,24 +74,31 @@ const DashboardPage = () => {
               </StatHelpText>
             </Stat>
           </Flex>
-          <Flex
-            flexDirection="row"
-            align="center"
-            justify="center"
-            w="100%"
-          ></Flex>
           <Flex flexDirection="row" align="center" justify="center" w="100%">
             <Stat>
-              <StatLabel>Global Uptime</StatLabel>
-              <StatNumber>99.28%</StatNumber>
+              <StatLabel>MTTR</StatLabel>
+              <StatNumber color="red.400">10.75 Hours</StatNumber>
               <StatHelpText
                 alignSelf="flex-end"
                 justifySelf="flex-end"
-                color="green.400"
                 fontWeight="bold"
                 fontSize="md"
               >
-                +15%
+                <Tag>Internal</Tag>
+              </StatHelpText>
+            </Stat>
+          </Flex>
+          <Flex flexDirection="row" align="center" justify="center" w="100%">
+            <Stat>
+              <StatLabel>RPO</StatLabel>
+              <StatNumber color="green.400">2.15 Hours</StatNumber>
+              <StatHelpText
+                alignSelf="flex-end"
+                justifySelf="flex-end"
+                fontWeight="bold"
+                fontSize="md"
+              >
+                <Tag>Internal</Tag>
               </StatHelpText>
             </Stat>
           </Flex>
